@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		97EAE5342F37CF23005BFA2A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 97EAE5332F37CF23005BFA2A /* Swinject */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		979F116B2F325F2B00C83E16 /* Pixora.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixora.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97EAE5342F37CF23005BFA2A /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Pixora;
 			packageProductDependencies = (
+				97EAE5332F37CF23005BFA2A /* Swinject */,
 			);
 			productName = Pixora;
 			productReference = 979F116B2F325F2B00C83E16 /* Pixora.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 979F11622F325F2B00C83E16;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				97EAE5322F37CF23005BFA2A /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 979F116C2F325F2B00C83E16 /* Products */;
 			projectDirPath = "";
@@ -341,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97EAE5322F37CF23005BFA2A /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97EAE5332F37CF23005BFA2A /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97EAE5322F37CF23005BFA2A /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 979F11632F325F2B00C83E16 /* Project object */;
 }

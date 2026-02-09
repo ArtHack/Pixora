@@ -6,20 +6,43 @@
 //
 
 import UIKit
+import Swinject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    private static let assembler = Assembler([
+        ServicesAssembly(),
+        RootAssembly()
+    ])
 
     var window: UIWindow?
 
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
       
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController()
-        self.window = window
-        window.makeKeyAndVisible()
+        window = UIWindow(windowScene: windowScene)
+        
+        let rootController: UIViewController
+        
+        if let configurator = SceneDelegate.assembler.resolver.resolve(AppRootConfigurator.self) {
+            let appController = AppRootViewController()
+            do {
+                try configurator.configure(view: appController)
+                rootController = appController
+            } catch {
+                rootController = CrashErrorController()
+            }
+        } else {
+            rootController = CrashErrorController()
+        }
+              
+        let navigationController =  UINavigationController(rootViewController: rootController)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
