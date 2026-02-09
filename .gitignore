@@ -1,17 +1,68 @@
+# ===============================
 # Xcode
+# ===============================
 DerivedData/
 *.xcuserstate
 *.xcuserdata/
+*.xcuserdatad/
+**/xcshareddata/
 
-# Build
+# ===============================
+# Build artifacts
+# ===============================
 build/
+*.ipa
+*.dSYM
+*.dSYM.zip
 
-# Config
+# ===============================
+# Swift Package Manager
+# ===============================
+.build/
+Packages/
+Package.resolved
+
+# ===============================
+# CocoaPods
+# ===============================
+Pods/
+
+# ===============================
+# Carthage
+# ===============================
+Carthage/Build/
+
+# ===============================
+# Fastlane
+# ===============================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# ===============================
+# Config & Secrets
+# ===============================
 *.xcconfig
 *.xcconfig.sample
-
-# Secrets
 Secrets.plist
+GoogleService-Info.plist
 
+# ===============================
+# Logs
+# ===============================
+*.log
+
+# ===============================
 # macOS
-.DS_StorePixora.xcodeproj/project.xcworkspace/xcshareddata/
+# ===============================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ===============================
+# Temporary files
+# ===============================
+*.swp
+*.tmp
+*.temp
