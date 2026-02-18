@@ -1,14 +1,14 @@
 //
-//  LoginViewController.swift
+//  RegiserViewController.swift
 //  Pixora
 //
-//  Created by Artem Khakimullin on 08.02.2026.
+//  Created by Artem Khakimullin on 17.02.2026.
 //
 
 import UIKit
 import SnapKit
 
-class LoginViewController: NavigationChildController {
+class RegisterViewController: NavigationChildController {
     
     //MARK: - UIComponents
     
@@ -30,16 +30,15 @@ class LoginViewController: NavigationChildController {
         return textField
     }()
     
-    private let loginButton: UIButton = .authButton(title: "Login")
     private let registerButton: UIButton = .authButton(title: "Register")
+    private let backButton: UIButton = .authButton(title: "Back")
     
     private let errorLabel: UILabel = .errorLabel(text: "Error!")
     
     private let loadingIndicator = UIActivityIndicatorView()
     
-    var interactor: LoginInteractorProtocol?
     var router: AuthRouterProtocol?
-    
+
     //MARK: - Override
     
     override func viewDidLoad() {
@@ -55,14 +54,14 @@ class LoginViewController: NavigationChildController {
     
     private func setupViews() {
         let subviews = [loginLabel, loginTextField, passwordLabel, passwordTextField,
-                        loginButton, registerButton, errorLabel, loadingIndicator]
+                        registerButton, backButton, errorLabel, loadingIndicator]
         subviews.forEach { view.addSubview($0) }
         
         loadingIndicator.hidesWhenStopped = false
         loadingIndicator.color = .trueBlack
         loadingIndicator.style = .large
         
-        registerButton.addTarget(self, action: #selector(goToRegisterScreen), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backToLogin), for: .touchUpInside)
     }
     
     private func setupConstraints() {
@@ -98,7 +97,7 @@ class LoginViewController: NavigationChildController {
             make.height.equalTo(54)
         }
         
-        loginButton.snp.makeConstraints { make in
+        backButton.snp.makeConstraints { make in
             make.top.equalTo(registerButton.snp.bottom).offset(12)
             make.left.equalTo(view).inset(60)
             make.right.equalTo(view).inset(60)
@@ -115,16 +114,10 @@ class LoginViewController: NavigationChildController {
             make.centerY.equalTo(view)
         }
     }
+    
     @objc
-    private func goToRegisterScreen() {
+    private func backToLogin() {
         guard let navParent = self.navigationController else { return }
-        
-        do {
-            try router?.goToRegister(parent: navParent)
-        } catch _ as DIErrors {
-            showDIError()
-        } catch {
-            showErrorAlert(title: "Unknown error")
-        }
+        router?.backToLogin(parent: navParent)
     }
 }

@@ -7,23 +7,31 @@
 
 import UIKit
 
-class AppRootViewController: UIViewController {
+class AppRootViewController: BaseController {
     
-    var interactor: AppRootInteractor?
-    var router: AppRootRouter?
+    var interactor: AppRootInteractorProtocol?
+    var router: AppRootRouterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .cyan
         interactor?.checkLoginStatus()
     }
     
     func isUserLogged(isLogged: Bool) {
-        if isLogged {
-            router?.navigateToAuthorized(parent: self.navigationController!)
-        } else {
-            router?.navigateToLogin(parent: self.navigationController!)
+        
+        guard let navParent = self.navigationController else { return }
+        
+        do {
+            if isLogged {
+                try router?.navigateToAuthorized(parent: navParent)
+            } else {
+                try router?.navigateToLogin(parent: navParent)
+            }
+        } catch _ as DIErrors {
+            showDIError()
+        } catch {
+            showErrorAlert(title: "Unknown error")
         }
     }
 }

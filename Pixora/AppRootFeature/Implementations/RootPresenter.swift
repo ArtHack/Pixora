@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RootPresenter: AppRootPresenter {
+class RootPresenter: AppRootPresenterProtocol {
     
     private let view: AppRootViewController
     

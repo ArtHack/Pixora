@@ -8,7 +8,7 @@
 import UIKit
 import Swinject
 
-class RootRouter: AppRootRouter {
+class RootRouter: AppRootRouterProtocol {
 
     private let resolver: Resolver
     
@@ -16,11 +16,17 @@ class RootRouter: AppRootRouter {
         self.resolver = resolver
     }
     
-    func navigateToLogin(parent: UINavigationController) {
-        parent.pushViewController(LoginViewController(), animated: true)
+    func navigateToLogin(parent: UINavigationController) throws {
+        guard let authConfigurator = resolver.resolve(AuthorizationConfigurator.self)
+        else { throw DIErrors.unableToResolve }
+        
+        let controller = LoginViewController()
+        try authConfigurator.configure(view: controller)
+        
+        parent.pushViewController(controller, animated: true)
     }
     
-    func navigateToAuthorized(parent: UINavigationController) {
+    func navigateToAuthorized(parent: UINavigationController) throws {
         parent.pushViewController(MainViewController(), animated: true)
     }
 }

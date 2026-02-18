@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AlwaysNotLoggedService: LocalStorageService {
+struct AlwaysNotLoggedService: LocalStorageServiceProtocol {
     func getUserToken() -> String? {
         nil
     }
