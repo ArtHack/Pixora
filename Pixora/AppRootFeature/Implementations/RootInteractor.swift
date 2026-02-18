@@ -7,12 +7,12 @@
 
 import Foundation
 
-class RootInteractor: AppRootInteractor {
+class RootInteractor: AppRootInteractorProtocol {
     
-    private let presenter: AppRootPresenter
-    private let localService: LocalStorageService
+    private let presenter: AppRootPresenterProtocol
+    private let localService: LocalStorageServiceProtocol
     
-    init(presenter: AppRootPresenter, localService: LocalStorageService) {
+    init(presenter: AppRootPresenterProtocol, localService: LocalStorageServiceProtocol) {
         self.presenter = presenter
         self.localService = localService
     }

@@ -11,18 +11,18 @@ import Swinject
 class RootAssembly: Assembly {
     
     func assemble(container: Swinject.Container) {
-        container.register(AppRootPresenter.self) { _, controller in
+        container.register(AppRootPresenterProtocol.self) { _, controller in
                 RootPresenter(view: controller)
         }
         
-        container.register(AppRootInteractor.self) { resolver, presenter in
+        container.register(AppRootInteractorProtocol.self) { resolver, presenter in
             RootInteractor(
                 presenter: presenter ,
-                localService: resolver.resolve(LocalStorageService.self, name: "always_logged")!
+                localService: resolver.resolve(LocalStorageServiceProtocol.self, name: "always_not_logged")!
             )
         }
         
-        container.register(AppRootRouter.self) { resolver in
+        container.register(AppRootRouterProtocol.self) { resolver in
             RootRouter(resolver: resolver)
         }
         
