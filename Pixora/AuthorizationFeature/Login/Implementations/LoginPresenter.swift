@@ -11,4 +11,8 @@ final class LoginPresenter: LoginPresenterProtocol {
     init(view: LoginViewController) {
         self.view = view
     }
+    
+    func setLoginEnabled(isEnabled: Bool) {
+        view.setLoginEnabled(isEnabled: isEnabled)
+    }
 }

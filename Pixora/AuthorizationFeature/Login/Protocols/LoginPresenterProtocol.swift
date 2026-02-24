@@ -6,5 +6,5 @@
 //
 
 protocol LoginPresenterProtocol {
-    
+    func setLoginEnabled(isEnabled: Bool)
 }
