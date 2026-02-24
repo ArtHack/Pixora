@@ -15,4 +15,16 @@ final class LoginPresenter: LoginPresenterProtocol {
     func setLoginEnabled(isEnabled: Bool) {
         view.setLoginEnabled(isEnabled: isEnabled)
     }
+    
+    func setIsLoading(isLoading: Bool) {
+        view.setIsLoading(isLoading: isLoading)
+    }
+    
+    func showError(message: String) {
+        view.showErrorText(errorText: message)
+    }
+    
+    func hideErrorText() {
+        view.hideErrorText()
+    }
 }

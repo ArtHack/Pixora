@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum LoginMockError: Error {
+    case invalidToken
+}

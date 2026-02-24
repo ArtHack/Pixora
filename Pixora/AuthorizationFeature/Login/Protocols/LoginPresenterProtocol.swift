@@ -7,4 +7,7 @@
 
 protocol LoginPresenterProtocol {
     func setLoginEnabled(isEnabled: Bool)
+    func setIsLoading(isLoading: Bool)
+    func showError(message: String)
+    func hideErrorText()
 }

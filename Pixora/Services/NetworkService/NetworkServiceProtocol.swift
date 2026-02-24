@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol NetworkServiceProtocol {
+    func loginUser(login: String, password: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
+}

@@ -57,7 +57,38 @@ class LoginViewController: NavigationChildController {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             
-            self.loginButton.isEnabled = isEnabled
+            loginButton.isEnabled = isEnabled
+
+        }
+    }
+    
+    func setIsLoading(isLoading: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            self.registerButton.isEnabled = !isLoading
+            self.loginButton.isEnabled = !isLoading
+            self.loginTextField.isEnabled = !isLoading
+            self.passwordTextField.isEnabled = !isLoading
+            
+            isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+        }
+    }
+    
+    func showErrorText(errorText: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            self.errorLabel.text = errorText
+            self.errorLabel.isHidden = false
+        }
+    }
+    
+    func hideErrorText() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            self.errorLabel.isHidden = true
         }
     }
 
@@ -71,6 +102,8 @@ class LoginViewController: NavigationChildController {
         
         loadingIndicator.color = .trueBlack
         loadingIndicator.style = .large
+        
+        loginButton.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
         
         registerButton.addTarget(self, action: #selector(goToRegisterScreen), for: .touchUpInside)
         
@@ -133,6 +166,11 @@ class LoginViewController: NavigationChildController {
             make.centerX.equalTo(view)
             make.centerY.equalTo(view)
         }
+    }
+    
+    @objc
+    private func loginUser() {
+        interactor?.loginUser()
     }
     
     @objc
