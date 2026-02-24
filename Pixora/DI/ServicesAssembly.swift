@@ -10,12 +10,20 @@ import Swinject
 
 class ServicesAssembly: Assembly {
     func assemble(container: Swinject.Container) {
-        container.register(LocalStorageServiceProtocol.self, name: "always_not_logged") { resolvver in
+        container.register(LocalStorageServiceProtocol.self, name: "always_not_logged") { resolver in
             AlwaysNotLoggedService()
         }
         
-        container.register(LocalStorageServiceProtocol.self, name: "always_logged") { resolvver in
+        container.register(LocalStorageServiceProtocol.self, name: "always_logged") { resolver in
             AlwaysLoggedInService()
+        }
+        
+        container.register(NetworkServiceProtocol.self, name: "always_login") { resolver in
+            AlwaysLoginMock()
+        }
+        
+        container.register(NetworkServiceProtocol.self, name: "always_fail_login") { resolver in
+            AlwaysFailLoginMock()
         }
     }
 }

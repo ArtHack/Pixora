@@ -6,5 +6,7 @@
 //
 
 protocol LoginInteractorProtocol {
-    
+    func updateLogin(_ login: String)
+    func updatePassword(_ password: String)
+    func loginUser()
 }
