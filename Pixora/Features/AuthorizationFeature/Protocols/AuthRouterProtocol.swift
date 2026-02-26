@@ -8,8 +8,7 @@
 import UIKit
 
 protocol AuthRouterProtocol {
+    func goToAuthorizedScreen(parent: UINavigationController) throws
     func goToRegister(parent: UINavigationController) throws
     func backToLogin(parent: UINavigationController)
 }
-
-

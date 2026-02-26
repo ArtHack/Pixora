@@ -20,6 +20,10 @@ final class LoginPresenter: LoginPresenterProtocol {
         view.setIsLoading(isLoading: isLoading)
     }
     
+    func successLogin() {
+        view.successLogin()
+    }
+    
     func showError(message: String) {
         view.showErrorText(errorText: message)
     }

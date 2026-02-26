@@ -79,6 +79,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				97B922D32F4EFB0700729755 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				979F116D2F325F2B00C83E16 /* Pixora */,
@@ -119,6 +120,7 @@
 			packageReferences = (
 				97EAE5322F37CF23005BFA2A /* XCRemoteSwiftPackageReference "Swinject" */,
 				971E8F542F41DFDC00739009 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				97B922D12F4EFAF300729755 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 979F116C2F325F2B00C83E16 /* Products */;
@@ -149,6 +151,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97B922D32F4EFB0700729755 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 97B922D22F4EFB0700729755 /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		979F117F2F325F2D00C83E16 /* Debug */ = {
@@ -366,6 +375,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		97B922D12F4EFAF300729755 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.53.2;
+			};
+		};
 		97EAE5322F37CF23005BFA2A /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
@@ -381,6 +398,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 971E8F542F41DFDC00739009 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		97B922D22F4EFB0700729755 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97B922D12F4EFAF300729755 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		97EAE5332F37CF23005BFA2A /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

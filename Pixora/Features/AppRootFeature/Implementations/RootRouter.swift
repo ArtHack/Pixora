@@ -5,8 +5,8 @@
 //  Created by Artem Khakimullin on 07.02.2026.
 //
 
-import UIKit
 import Swinject
+import UIKit
 
 class RootRouter: AppRootRouterProtocol {
 
@@ -27,6 +27,18 @@ class RootRouter: AppRootRouterProtocol {
     }
     
     func navigateToAuthorized(parent: UINavigationController) throws {
-        parent.pushViewController(MainViewController(), animated: true)
+        guard let configurator = resolver.resolve(MainFeatureConfigurator.self)
+        else { throw DIErrors.unableToResolve }
+        
+        let actionsTab = ActionsViewController()
+        try configurator.configure(view: actionsTab)
+        
+        let tabController = MainViewController(childControllers: [
+            actionsTab
+        ])
+        
+        try configurator.configure(view: tabController)
+        
+        parent.pushViewController(tabController, animated: true)
     }
 }

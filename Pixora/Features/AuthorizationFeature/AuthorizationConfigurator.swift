@@ -21,16 +21,18 @@ final class AuthorizationConfigurator {
               let router = resolver.resolve(AuthRouterProtocol.self)
         else { throw DIErrors.unableToResolve }
         
-        
         view.interactor = interactor
         view.router = router
     }
     
     func configure(view: RegisterViewController) throws {
-        guard let router = resolver.resolve(AuthRouterProtocol.self)
+        guard
+            let presenter = resolver.resolve(RegisterPresenterProtocol.self, argument: view),
+            let interactor = resolver.resolve(RegisterInteractorProtocol.self, argument: presenter),
+            let router = resolver.resolve(AuthRouterProtocol.self)
         else { throw DIErrors.unableToResolve }
         
-        
+        view.interactor = interactor
         view.router = router
     }
 }

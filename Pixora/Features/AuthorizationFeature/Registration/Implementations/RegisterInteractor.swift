@@ -1,21 +1,25 @@
 //
-//  LoginInteractor.swift
+//  RegisterInteractor.swift
 //  Pixora
 //
-//  Created by Artem Khakimullin on 17.02.2026.
+//  Created by Artem Khakimullin on 25.02.2026.
 //
 
 import Foundation
 
-class LoginInteractor: LoginInteractorProtocol {
-    private let presenter: LoginPresenterProtocol
+class RegisterInteractor: RegisterInteractorProtocol {
+    private let presenter: RegisterPresenterProtocol
     private let localStorage: LocalStorageServiceProtocol
     private let networkService: NetworkServiceProtocol
     
     private var login: String = ""
     private var password: String = ""
     
-    init(presenter: LoginPresenterProtocol, localStorage: LocalStorageServiceProtocol, networkService: NetworkServiceProtocol) {
+    init(
+        presenter: RegisterPresenterProtocol,
+        localStorage: LocalStorageServiceProtocol,
+        networkService: NetworkServiceProtocol
+    ) {
         self.presenter = presenter
         self.localStorage = localStorage
         self.networkService = networkService
@@ -23,27 +27,28 @@ class LoginInteractor: LoginInteractorProtocol {
     
     func updateLogin(_ login: String) {
         self.login = login
-        self.presenter.setLoginEnabled(isEnabled: validateInput())
+        self.presenter.setRegisterEnabled(isEnabled: validateInput())
     }
     
     func updatePassword(_ password: String) {
         self.password = password
-        self.presenter.setLoginEnabled(isEnabled: validateInput())
+        self.presenter.setRegisterEnabled(isEnabled: validateInput())
     }
-    
-    func loginUser() {
+
+    func registerUser() {
         presenter.hideErrorText()
-        presenter.setIsLoading(isLoading: true)
+        presenter.setIsRegister(isLoading: true)
         
-        networkService.loginUser(login: login, password: password) { [weak self] response in
+        networkService.registerUser(login: login, password: password) { [weak self] response in
             guard let self else { return }
             
-            defer { self.presenter.setIsLoading(isLoading: false)}
+            defer { self.presenter.setIsRegister(isLoading: false)}
             
             switch response {
                 
             case .success(let token):
                 self.presenter.hideErrorText()
+                self.presenter.successRegistration()
                 
             case .failure(let error):
                 self.presenter.showError(message: error.localizedDescription)
