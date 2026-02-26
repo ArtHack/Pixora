@@ -9,4 +9,5 @@ import Foundation
 
 protocol NetworkServiceProtocol {
     func loginUser(login: String, password: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
+    func registerUser(login: String, password: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
 }

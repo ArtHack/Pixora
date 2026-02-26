@@ -9,6 +9,10 @@ import Foundation
 
 struct AlwaysLoggedInService: LocalStorageServiceProtocol {
     func getUserToken() -> String? {
-        "loged"
+        "logged"
+    }
+    
+    func setUserToken(newToken: String) -> String? {
+        "logged"
     }
 }

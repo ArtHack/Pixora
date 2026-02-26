@@ -1,13 +1,14 @@
 //
-//  MainViewController.swift
+//  ActionsViewController.swift
 //  Pixora
 //
-//  Created by Artem Khakimullin on 08.02.2026.
+//  Created by Artem Khakimullin on 26.02.2026.
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
+class ActionsViewController: BaseController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

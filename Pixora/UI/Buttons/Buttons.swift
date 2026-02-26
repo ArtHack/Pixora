@@ -10,9 +10,9 @@ import UIKit
 extension UIButton {
     public static func authButton(title: String) -> UIButton {
         let attributes = [
-            NSAttributedString.Key.font : UIFont.Roboto.bold(size: 14.0),
-            NSAttributedString.Key.foregroundColor : UIColor.trueBlack,
-        ] as [NSAttributedString.Key : Any]
+            NSAttributedString.Key.font: UIFont.Roboto.bold(size: 14.0) ?? UIFont.systemFont(ofSize: 14),
+            NSAttributedString.Key.foregroundColor: UIColor.trueBlack
+        ] as [NSAttributedString.Key: Any]
         
         let container = AttributeContainer(attributes)
         

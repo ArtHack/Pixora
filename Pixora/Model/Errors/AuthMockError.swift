@@ -7,6 +7,8 @@
 
 import Foundation
 
-enum LoginMockError: Error {
+enum AuthMockError: Error {
     case invalidToken
+    case loginError
+    case registerError
 }

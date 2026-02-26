@@ -6,5 +6,6 @@
 //
 
 protocol LocalStorageServiceProtocol {
-    func getUserToken() -> String? 
+    func getUserToken() -> String?
+    func setUserToken(newToken: String) -> String?
 }

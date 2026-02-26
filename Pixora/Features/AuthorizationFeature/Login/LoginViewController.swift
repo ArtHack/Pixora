@@ -5,12 +5,12 @@
 //  Created by Artem Khakimullin on 08.02.2026.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class LoginViewController: NavigationChildController {
     
-    //MARK: - UIComponents
+    // MARK: - UIComponents
     
     private let loginLabel: UILabel = .simpleLabel(text: "Login")
     
@@ -41,7 +41,7 @@ class LoginViewController: NavigationChildController {
     var interactor: LoginInteractorProtocol?
     var router: AuthRouterProtocol?
     
-    //MARK: - Override
+    // MARK: - Override
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class LoginViewController: NavigationChildController {
         setupConstraints()
     }
     
-    //MARK: - Public functions
+    // MARK: - Public functions
     func setLoginEnabled(isEnabled: Bool) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
@@ -71,7 +71,11 @@ class LoginViewController: NavigationChildController {
             self.loginTextField.isEnabled = !isLoading
             self.passwordTextField.isEnabled = !isLoading
             
-            isLoading ? self.loadingIndicator.startAnimating() : self.loadingIndicator.stopAnimating()
+            if isLoading {
+                loadingIndicator.startAnimating()
+            } else {
+                loadingIndicator.stopAnimating()
+            }
         }
     }
     
@@ -91,9 +95,24 @@ class LoginViewController: NavigationChildController {
             self.errorLabel.isHidden = true
         }
     }
-
     
-    //MARK: - Private functions
+    func successLogin() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            guard let navParent = self.navigationController else { return }
+            
+            do {
+                try self.router?.goToAuthorizedScreen(parent: navParent)
+            } catch _ as DIErrors {
+                showDIError()
+            } catch {
+                showErrorAlert(title: "Unknown error")
+            }
+        }
+    }
+
+    // MARK: - Private functions
     
     private func setupViews() {
         let subviews = [loginLabel, loginTextField, passwordLabel, passwordTextField,
@@ -129,7 +148,6 @@ class LoginViewController: NavigationChildController {
             make.right.equalTo(view).inset(60)
             make.height.equalTo(44)
         }
-        
         
         passwordLabel.snp.makeConstraints { make in
             make.top.equalTo(loginTextField.snp.bottom).offset(12)
